@@ -17,17 +17,7 @@
                 <th>Gender</th>
                 <th>Race</th>
             </tr>
-        {% for obj in object_list %}
-            <tr>
-                <td><a href="{{ obj.id }}/">{{ obj.full_name }}</a></td>
-                <td>{{ obj.date }}</td>
-                <td>{{ obj.type }}</td>
-                <td>{{ obj.address }}</td>
-                <td>{{ obj.age }}</td>
-                <td>{{ obj.gender }}</td>
-                <td>{{ obj.race }}</td>
-            </tr>
-        {% endfor %}
+        
         </table>
         <script type="text/javascript">
             var map = L.map('map').setView([34.055, -118.35], 9);
@@ -40,19 +30,7 @@
             var data = {
               "type": "FeatureCollection",
               "features": [
-                {% for obj in object_list %}
-                {
-                  "type": "Feature",
-                  "properties": {
-                    "full_name": "{{ obj.full_name }}",
-                    "id": "{{ obj.id }}"
-                  },
-                  "geometry": {
-                    "type": "Point",
-                    "coordinates": [{{ obj.x }}, {{ obj.y }}]
-                  }
-                }{% if not loop.last %},{% endif %}
-                {% endfor %}
+                
               ]
             };
             var dataLayer = L.geoJson(data, {
